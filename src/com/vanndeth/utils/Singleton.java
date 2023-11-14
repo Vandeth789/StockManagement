@@ -3,6 +3,7 @@ package com.vanndeth.utils;
 import com.vanndeth.controller.MenuController;
 import com.vanndeth.controller.ProductController;
 import com.vanndeth.dao.ProductDaoImpl;
+import com.vanndeth.database.ProductDatabase;
 import com.vanndeth.service.ProductService;
 import com.vanndeth.service.ProductServiceImpl;
 import com.vanndeth.view.MenuView;
@@ -16,6 +17,7 @@ public class Singleton {
     private static ProductServiceImpl productServiceImpl;
     private static ProductDaoImpl productDaoImpl;
     private static MenuView menuView;
+    private static ProductDatabase productDatabase;
 
     public static Scanner scanner(){
         if(scanner == null){
@@ -56,6 +58,12 @@ public class Singleton {
         return menuView;
     }
 
+    public static ProductDatabase productDatabase(){
+        if(productDatabase == null){
+            productDatabase = new ProductDatabase();
+        }
+        return productDatabase;
+    }
 
 
 }

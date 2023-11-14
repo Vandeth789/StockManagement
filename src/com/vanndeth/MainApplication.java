@@ -2,43 +2,63 @@ package com.vanndeth;
 
 import com.vanndeth.controller.MenuController;
 import com.vanndeth.controller.ProductController;
+import com.vanndeth.database.ProductDatabase;
+import com.vanndeth.model.Product;
 import com.vanndeth.service.ProductServiceImpl;
 import com.vanndeth.utils.Singleton;
 
-import javax.print.DocFlavor;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class MainApplication {
     private final Scanner scanner;
     private final MenuController menuController;
     private final ProductController productController;
     private final ProductServiceImpl productServiceImpl;
+    private final ProductDatabase productDatabase;
     public MainApplication(){
         scanner = Singleton.scanner();
         menuController = Singleton.menuController();
         productController = Singleton.productController();
         productServiceImpl = Singleton.productServiceImpl();
+        productDatabase = Singleton.productDatabase();
     }
 
     private void run() {
-        menuController.index();
-        System.out.print("Please choose options : ");
-        int option = Integer.parseInt(scanner.nextLine());
+        do {
+            Product product = new Product();
+            menuController.displayProductList();
+            System.out.print("Please choose options : ");
+            int option = Integer.parseInt(scanner.nextLine());
+            switch (option) {
+                case 1 -> {
+                    productController.getAllProduct();
+                }
+                case 2 -> {
+                    productController.createProduct(product);
 
-        // initialize manual
-//        ProductController productController = new ProductController();
-//        productController.index();
+                }
+                case 3 -> {
+                    productController.updateProductByCode(product);
+                }
+                case 4 -> {
+                    productController.deleteProductByCode(product.getCode());
 
-        switch (option) {
-            case 1 -> productController.index();
-            default -> throw new IllegalStateException();
-        }
+                }
+                case 5 -> {
+                    productController.getProductByCode(product.getCode());
+
+                }
+                case 6 -> {
+
+                    productController.getProductByName(product.getName());
+
+                }
+
+                default -> throw new IllegalStateException();
+            }
+        }while (true);
     }
-
     public static void main(String[] args) {
-
         new MainApplication().run();
     }
 }
