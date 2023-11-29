@@ -35,7 +35,6 @@ public class ProductDaoImpl implements ProductDao{
                 .filter(product -> product.getCode().equals(code))
                 .findFirst();
     }
-
     @Override
     public Product updateByCode(Product product) {
         System.out.print("Enter new product's name: ");
@@ -45,7 +44,6 @@ public class ProductDaoImpl implements ProductDao{
         System.out.print("Enter new product's quantity: ");
         product.setQty(Integer.parseInt(scanner.nextLine()));
         product.setImportedDate(LocalDate.now());
-
         Product foundProduct = productDatabase.getProducts().stream()
             .filter(pro -> pro.getCode().equals(product.getCode()))
             .findFirst()

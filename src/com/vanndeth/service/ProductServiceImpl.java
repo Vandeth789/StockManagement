@@ -39,14 +39,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product selectByCode(Long code) {
-        System.out.print("Enter product's code to search: ");
-        code = Long.parseLong(scanner.nextLine());
-        Long finalCode = code;
-        return productDao.selectByCode(code)
-                .orElseThrow(()
-                        -> new ProductCodeNotFoundException(
-                        String.format("Product code = %s does not exist in database!", finalCode)
-                ));
+//        System.out.print("Enter product's code to search: ");
+//        code = Long.parseLong(scanner.nextLine());
+//        Long finalCode = code;
+//        return productDao.selectByCode(code)
+//                .stream()
+//                .findFirst()
+//                .orElseThrow(()
+//                        -> new ProductCodeNotFoundException(
+//                        String.format("Product code = %s does not exist in database!", finalCode);
+//                ));
+        return null;
     }
 
     @Override
